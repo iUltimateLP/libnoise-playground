@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#ImGui.ini
+LibNoisePlayground/imgui.ini
