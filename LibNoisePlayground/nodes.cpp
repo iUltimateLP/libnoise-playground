@@ -131,7 +131,7 @@ printf("JSON: Unable to open %s for write\n", filename);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void drawHermite(ImDrawList* drawList, ImVec2 p1, ImVec2 p2, int STEPS)
+void drawHermite(ImDrawList* drawList, ImVec2 p1, ImVec2 p2, int STEPS, ImColor lineColor)
 {
 	ImVec2 t1 = ImVec2(+80.0f, 0.0f);
 	ImVec2 t2 = ImVec2(+80.0f, 0.0f);
@@ -146,7 +146,10 @@ void drawHermite(ImDrawList* drawList, ImVec2 p1, ImVec2 p2, int STEPS)
 		drawList->PathLineTo(ImVec2(h1*p1.x + h2*p2.x + h3*t1.x + h4*t2.x, h1*p1.y + h2*p2.y + h3*t1.y + h4*t2.y));
 	}
 
-	drawList->PathStroke(ImColor(200, 200, 100), false, 3.0f);
+	ImColor finalColor;
+
+
+	drawList->PathStroke(lineColor, false, 3.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,13 +249,13 @@ void updateDraging(ImVec2 offset)
 
 		drawList->ChannelsSetCurrent(0); // Background
 
-		drawHermite(drawList, s_dragNode.pos, ImGui::GetIO().MousePos, 12);
+		drawHermite(drawList, s_dragNode.pos, ImGui::GetIO().MousePos, 12, VariableColors[s_dragNode.con->desc.type]);
 
 		if (!ImGui::IsMouseDown(0))
 		{
 			ImVec2 pos;
 			Connection* con = getHoverCon(offset, &pos);
-
+			
 			// Make sure we are still hovering the same node
 
 			if (con == s_dragNode.con)
@@ -452,7 +455,10 @@ void renderLines(ImDrawList* drawList, ImVec2 offset)
 			drawHermite(drawList,
 				offset + targetNode->pos + con->input->pos,
 				offset + node->pos + con->pos,
-				12);
+				12, VariableColors[con->input->desc.type]);
+
+			// offset + targetNode->pos + con->input->pos,
+			// offset + node->pos + con->pos,
 		}
 	}
 }

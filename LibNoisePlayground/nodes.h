@@ -7,6 +7,7 @@
 #include <string.h>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,6 +34,15 @@ enum ConnectionType
 	ConnectionType_ColorGradient,
 	ConnectionType_Float,
 	ConnectionType_Bool,
+};
+
+static std::map<ConnectionType, ImColor> VariableColors = 
+{
+	{ConnectionType_ModuleOutput, ImColor(255, 255, 255)},
+	{ConnectionType_Color, ImColor(0, 0, 255)},
+	{ConnectionType_ColorGradient, ImColor(0, 128, 255)},
+	{ConnectionType_Float, ImColor(0, 128, 0)},
+	{ConnectionType_Bool, ImColor(255, 0, 0)},
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +101,21 @@ static struct NodeType s_nodeTypes[] =
 			Node Color
 		}
 	*/
-	{}
+	{
+		"Test1",
+		{
+			{"Test Connection", ConnectionType_Color},
+			{"Test Connection 2", ConnectionType_ColorGradient},
+		},
+		{
+			{"Color Connection", ConnectionType_Color},
+			{ "ColorGradient Connection", ConnectionType_ColorGradient },
+			{ "Float Connection", ConnectionType_Float },
+			{ "Bool Connection", ConnectionType_Bool },
+			{ "ModuleOutput Connection", ConnectionType_ModuleOutput },
+		},
+		ImColor(255, 128, 0),
+	},
 };
 
 

@@ -18,8 +18,6 @@ static void errorCallback(int error, const char* desc)
 // Main Entry
 int main()
 {
-	fprintf(stdout, "Hallo");
-
 	static bool bMenu_ClearNodes = false;
 	static bool bMenu_SaveNoise = false;
 	static bool bMenu_ShowInfo = false;
