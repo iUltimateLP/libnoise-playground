@@ -12,6 +12,11 @@ static void errorCallback(int error, const char* desc)
 // Main Entry
 int main()
 {
+	static bool bMenu_ClearNodes = false;
+	static bool bMenu_SaveNoise = false;
+	static bool bMenu_ShowInfo = false;
+	static bool bMenu_ShouldClose = false;
+
 	glfwSetErrorCallback(errorCallback);
 	if (!glfwInit())
 		return 1;
@@ -27,9 +32,38 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-
 		ImGui_ImplGlfw_NewFrame();
 
+		ImGui::GetStyle().WindowTitleAlign = ImGuiAlign_Center;
+
+		// Closing
+		if (bMenu_ShouldClose)
+			glfwSetWindowShouldClose(window, true);
+
+		// Info window
+		if (bMenu_ShowInfo)
+		{
+			ImGui::Begin("LibNoise Playground", &bMenu_ShowInfo, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+			ImGui::Text("Compiled at : %s - %s", __DATE__, __TIME__);
+			ImGui::Text("Created by  : iUltimateLP");
+			ImGui::Text("Uses        : ImGui (ocornut)\n              GLFW (Marcus Geelnard & Camilla Berglund)\n              LibNoise (Jason Bevins)");
+			ImGui::End();
+		}
+
+		// Menu bar
+		if (ImGui::BeginMainMenuBar())
+		{
+			if (ImGui::BeginMenu("Menu"))
+			{
+				ImGui::MenuItem("Clear Nodes", NULL, &bMenu_ClearNodes);
+				ImGui::MenuItem("Save noise to picture", NULL, &bMenu_SaveNoise);
+				ImGui::Separator();
+				ImGui::MenuItem("Info", NULL, &bMenu_ShowInfo);
+				ImGui::MenuItem("Close", NULL, &bMenu_ShouldClose);
+				ImGui::EndMenu();
+			}
+			ImGui::EndMainMenuBar();
+		}
 
 
 		int dW, dH;
