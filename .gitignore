@@ -15,7 +15,8 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
+[Xx]86/
+[Xx]64/
 [Bb]uild/
 bld/
 [Bb]in/
@@ -245,3 +246,6 @@ ModelManifest.xml
 
 #ImGui.ini
 LibNoisePlayground/imgui.ini
+
+!LibNoisePlayground/libs/glfw/x64
+!LibNoisePlayground/libs/glfw/x86
