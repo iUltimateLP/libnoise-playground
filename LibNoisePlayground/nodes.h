@@ -116,6 +116,30 @@ static struct NodeType s_nodeTypes[] =
 		},
 		ImColor(255, 128, 0),
 	},
+	{
+		"Test2",
+		{
+			{ "Test Connection", ConnectionType_Color },
+			{ "Test Connection 2", ConnectionType_ColorGradient },
+		},
+		{
+			{ "Color Connection", ConnectionType_Color },
+		},
+		ImColor(0, 128, 0),
+	},
+	{
+		"Test3",
+		{
+			{ "Test Connection", ConnectionType_Color },
+			{ "Test Connection 2", ConnectionType_ColorGradient },
+			{ "Test Connection 2", ConnectionType_ColorGradient },
+			{ "Test Connection 2", ConnectionType_ColorGradient },
+		},
+		{
+			{ "Color Connection", ConnectionType_Color },
+		},
+		ImColor(0, 128, 0),
+	},
 };
 
 

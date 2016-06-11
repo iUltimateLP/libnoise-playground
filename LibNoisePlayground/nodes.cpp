@@ -50,7 +50,7 @@ static Node* createNodeFromType(ImVec2 pos, NodeType* nodeType)
 		c->pos = ImVec2(0.0f, titleSize.y + inputTextSize.y + textSize.y / 2.0f);
 
 		inputTextSize.y += textSize.y;
-		inputTextSize.y += 4.0f;		// size between text entries
+		inputTextSize.y += 3.0f;		// size between text entries
 	}
 
 	inputTextSize.x += 40.0f;
@@ -66,10 +66,10 @@ static Node* createNodeFromType(ImVec2 pos, NodeType* nodeType)
 		ImVec2 textSize = ImGui::CalcTextSize(c->desc.name);
 		inputTextSize.x = std::max<float>(xStart + textSize.x, inputTextSize.x);
 	}
-
+	
 	node->pos = pos;
 	node->size.x = inputTextSize.x;
-	node->size.y = inputTextSize.y + titleSize.y;
+	node->size.y = inputTextSize.y + titleSize.y + std::max<float>(node->inputConnections.size(), node->outputConnections.size() * 10.0f);
 
 	inputTextSize.y = 0.0f;
 
@@ -82,7 +82,7 @@ static Node* createNodeFromType(ImVec2 pos, NodeType* nodeType)
 		c->pos = ImVec2(node->size.x, titleSize.y + inputTextSize.y + textSize.y / 2.0f);
 
 		inputTextSize.y += textSize.y;
-		inputTextSize.y += 4.0f;		// size between text entries
+		inputTextSize.y += 3.0f;		// size between text entries
 	}
 
 	// calculate the size of the node depending on nuber of connections
