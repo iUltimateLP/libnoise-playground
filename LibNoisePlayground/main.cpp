@@ -1,12 +1,13 @@
-#include <iostream>
+//#include <iostream>
 #include "libs/glfw/include/glfw3.h"
 #include "libs/ImGui/imgui.h"
 #include "libs/ImGui/imgui_impl_glfw.h"
-#include "libs/libnoise/noise.h"
-#include "libs/libnoise/noiseutils.h"
+//#include "libs/libnoise/noise.h"
+//#include "libs/libnoise/noiseutils.h"
+
 #include "nodes.h"
 
-using namespace noise;
+//using namespace noise;
 
 // Error Callback for OpenGL
 static void errorCallback(int error, const char* desc)
@@ -17,6 +18,8 @@ static void errorCallback(int error, const char* desc)
 // Main Entry
 int main()
 {
+	fprintf(stdout, "Hallo");
+
 	static bool bMenu_ClearNodes = false;
 	static bool bMenu_SaveNoise = false;
 	static bool bMenu_ShowInfo = false;
@@ -70,6 +73,8 @@ int main()
 			ImGui::EndMainMenuBar();
 		}
 
+		//Render Nodes here
+		ShowExampleAppCustomNodeGraph(&bMenu_SaveNoise);
 
 		int dW, dH;
 		glfwGetFramebufferSize(window, &dW, &dH);

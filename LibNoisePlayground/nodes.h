@@ -1,11 +1,12 @@
 #pragma once
 
-#include "libs/ImGui/imgui.h"
+#include "imgui.h"
+
+#include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include <vector>
 #include <algorithm>
-#include <stdint.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,11 +28,14 @@ static uint32_t s_id = 0;
 
 enum ConnectionType
 {
-	ConnectionType_Module,
+	ConnectionType_ModuleOutput,
+	ConnectionType_Color,
 	ConnectionType_ColorGradient,
-	ConnectionType_Output,
-	ConnectionType_Test,
+	ConnectionType_Float,
+	ConnectionType_Bool,
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct ConnectionDesc
 {
@@ -39,12 +43,17 @@ struct ConnectionDesc
 	ConnectionType type;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 struct NodeType
 {
 	const char* name;
 	ConnectionDesc inputConnections[MAX_CONNECTION_COUNT];
 	ConnectionDesc outputConnections[MAX_CONNECTION_COUNT];
+	ImColor color;
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct Connection
 {
@@ -67,22 +76,24 @@ struct Connection
 	std::vector<Connection*> output;
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Node types are defined here
-
-static struct NodeType s_nodeTypes[] = 
+static struct NodeType s_nodeTypes[] =
 {
-	{
-		"TestNode",
+	/*
+	Node creation template:
 		{
-			{"Input 1", ConnectionType_Test},
-			{"Input 2", ConnectionType_Test},
-		},
-		{
-			{"Output", ConnectionType_Test},
-		},
-	}
+			Node Name
+			{
+				{ Input Connection Name, Connection type },
+			},
+			{
+				{ Output Connection Name, Connection type },
+			},
+			Node Color
+		}
+	*/
+	{}
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,12 +107,14 @@ struct Node
 	std::vector<Connection*> outputConnections;
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 enum DragState
 {
 	DragState_Default,
 	DragState_Hover,
 	DragState_BeginDrag,
-	DragState_Dragging,
+	DragState_Draging,
 	DragState_Connect,
 };
 
@@ -116,26 +129,4 @@ static DragState s_dragState = DragState_Default;
 
 static std::vector<Node*> s_nodes;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-static void setupConnections(std::vector<Connection*>& connections, ConnectionDesc* connectionDescs);
-
-static Node* createNodeFromType(ImVec2 position, NodeType* nodeType);
-
-Node* createNodeFromName(ImVec2 position, const char* name);
-
-void drawHermite(ImDrawList* drawList, ImVec2 p1, ImVec2 p2, int steps);
-
-static bool isConnectorHovered(Connection* c, ImVec2 offset);
-
-static Connection* getHoveredConnector(ImVec2 offset, ImVec2* pos);
-
-void updateDragging(ImVec2 offset);
-
-static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& selectedNode);
-
-Node* findNodeByConnector(Connection* findCon);
-
-void renderLines(ImDrawList* drawList, ImVec2 offset);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ShowExampleAppCustomNodeGraph(bool* opened);
