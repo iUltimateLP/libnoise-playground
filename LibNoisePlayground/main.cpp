@@ -4,6 +4,7 @@
 #include "libs/ImGui/imgui_impl_glfw.h"
 #include "libs/libnoise/noise.h"
 #include "libs/libnoise/noiseutils.h"
+#include "nodes.h"
 
 using namespace noise;
 

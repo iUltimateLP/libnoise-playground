@@ -165,6 +165,7 @@
     <ClCompile Include="libs\libnoise\noisegen.cpp" />
     <ClCompile Include="libs\libnoise\noiseutils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="nodes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\glfw\include\glfw3.h" />
@@ -221,6 +222,7 @@
     <ClInclude Include="libs\libnoise\noisegen.h" />
     <ClInclude Include="libs\libnoise\noiseutils.h" />
     <ClInclude Include="libs\libnoise\vectortable.h" />
+    <ClInclude Include="nodes.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\libnoise\Sources" />

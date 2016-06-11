@@ -150,6 +150,9 @@
     <ClCompile Include="libs\libnoise\module\voronoi.cpp">
       <Filter>Quelldateien\libs\libnoise</Filter>
     </ClCompile>
+    <ClCompile Include="nodes.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\ImGui\imconfig.h">
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="libs\libnoise\module\voronoi.h">
       <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes.h">
+      <Filter>Quelldateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
