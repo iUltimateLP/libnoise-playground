@@ -146,9 +146,6 @@ void drawHermite(ImDrawList* drawList, ImVec2 p1, ImVec2 p2, int STEPS, ImColor 
 		drawList->PathLineTo(ImVec2(h1*p1.x + h2*p2.x + h3*t1.x + h4*t2.x, h1*p1.y + h2*p2.y + h3*t1.y + h4*t2.y));
 	}
 
-	ImColor finalColor;
-
-
 	drawList->PathStroke(lineColor, false, 3.0f);
 }
 
