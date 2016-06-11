@@ -1,7 +1,7 @@
 #include <iostream>
-#include "glfw/include/glfw3.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_glfw.h"
+#include "libs/glfw/include/glfw3.h"
+#include "libs/ImGui/imgui.h"
+#include "libs/ImGui/imgui_impl_glfw.h"
 
 // Error Callback for OpenGL
 static void errorCallback(int error, const char* desc)

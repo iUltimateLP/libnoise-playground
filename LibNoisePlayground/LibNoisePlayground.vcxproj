@@ -69,12 +69,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\ImGui;C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\glfw\x86\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)libs\glfw\x86\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\ImGui;C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Johnny\Documents\Visual Studio 2015\Projects\LibNoisePlayground\LibNoisePlayground\glfw\x64\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)libs\glfw\x64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,20 +124,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ImGui\imgui.cpp" />
-    <ClCompile Include="ImGui\imgui_demo.cpp" />
-    <ClCompile Include="ImGui\imgui_draw.cpp" />
-    <ClCompile Include="ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="libs\ImGui\imgui.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_impl_glfw.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImGui\imconfig.h" />
-    <ClInclude Include="ImGui\imgui.h" />
-    <ClInclude Include="ImGui\imgui_impl_glfw.h" />
-    <ClInclude Include="ImGui\imgui_internal.h" />
-    <ClInclude Include="ImGui\stb_rect_pack.h" />
-    <ClInclude Include="ImGui\stb_textedit.h" />
-    <ClInclude Include="ImGui\stb_truetype.h" />
+    <ClInclude Include="libs\glfw\include\glfw3.h" />
+    <ClInclude Include="libs\glfw\include\glfw3native.h" />
+    <ClInclude Include="libs\ImGui\imconfig.h" />
+    <ClInclude Include="libs\ImGui\imgui.h" />
+    <ClInclude Include="libs\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="libs\ImGui\imgui_internal.h" />
+    <ClInclude Include="libs\ImGui\stb_rect_pack.h" />
+    <ClInclude Include="libs\ImGui\stb_textedit.h" />
+    <ClInclude Include="libs\ImGui\stb_truetype.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
