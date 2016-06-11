@@ -2,6 +2,10 @@
 #include "libs/glfw/include/glfw3.h"
 #include "libs/ImGui/imgui.h"
 #include "libs/ImGui/imgui_impl_glfw.h"
+#include "libs/libnoise/noise.h"
+#include "libs/libnoise/noiseutils.h"
+
+using namespace noise;
 
 // Error Callback for OpenGL
 static void errorCallback(int error, const char* desc)

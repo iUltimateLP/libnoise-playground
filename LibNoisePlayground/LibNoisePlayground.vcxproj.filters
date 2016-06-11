@@ -22,6 +22,9 @@
     <Filter Include="Quelldateien\libs\glfw">
       <UniqueIdentifier>{807216dd-2768-41a9-84eb-f741af6d0395}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\libs\libnoise">
+      <UniqueIdentifier>{5594efae-ffde-4d71-a78f-547d1e929659}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +41,114 @@
     </ClCompile>
     <ClCompile Include="libs\ImGui\imgui_impl_glfw.cpp">
       <Filter>Quelldateien\libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\latlon.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\noisegen.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\noiseutils.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\model\cylinder.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\model\line.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\model\plane.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\model\sphere.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\abs.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\add.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\billow.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\blend.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\cache.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\checkerboard.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\clamp.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\const.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\curve.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\cylinders.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\displace.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\exponent.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\invert.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\max.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\min.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\modulebase.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\multiply.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\perlin.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\power.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\ridgedmulti.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\rotatepoint.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\scalebias.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\scalepoint.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\select.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\spheres.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\terrace.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\translatepoint.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\turbulence.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\libnoise\module\voronoi.cpp">
+      <Filter>Quelldateien\libs\libnoise</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,5 +179,145 @@
     <ClInclude Include="libs\glfw\include\glfw3native.h">
       <Filter>Quelldateien\libs\glfw</Filter>
     </ClInclude>
+    <ClInclude Include="libs\libnoise\basictypes.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\exception.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\interp.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\latlon.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\mathconsts.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\misc.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\noise.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\noisegen.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\vectortable.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\noiseutils.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\model\cylinder.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\model\line.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\model\model.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\model\plane.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\model\sphere.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\abs.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\add.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\billow.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\blend.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\cache.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\checkerboard.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\clamp.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\const.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\curve.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\cylinders.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\displace.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\exponent.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\invert.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\max.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\min.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\module.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\modulebase.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\multiply.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\perlin.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\power.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\ridgedmulti.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\rotatepoint.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\scalebias.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\scalepoint.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\select.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\spheres.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\terrace.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\translatepoint.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\turbulence.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\libnoise\module\voronoi.h">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\libnoise\Sources">
+      <Filter>Quelldateien\libs\libnoise</Filter>
+    </None>
   </ItemGroup>
 </Project>

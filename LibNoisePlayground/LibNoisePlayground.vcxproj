@@ -69,11 +69,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(ProjectDir)libs\libnoise;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)libs\glfw\x86\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libs\glfw\include;$(ProjectDir)libs\ImGui;$(ProjectDir)libs\libnoise;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)libs\glfw\x64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -128,6 +128,42 @@
     <ClCompile Include="libs\ImGui\imgui_demo.cpp" />
     <ClCompile Include="libs\ImGui\imgui_draw.cpp" />
     <ClCompile Include="libs\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="libs\libnoise\latlon.cpp" />
+    <ClCompile Include="libs\libnoise\model\cylinder.cpp" />
+    <ClCompile Include="libs\libnoise\model\line.cpp" />
+    <ClCompile Include="libs\libnoise\model\plane.cpp" />
+    <ClCompile Include="libs\libnoise\model\sphere.cpp" />
+    <ClCompile Include="libs\libnoise\module\abs.cpp" />
+    <ClCompile Include="libs\libnoise\module\add.cpp" />
+    <ClCompile Include="libs\libnoise\module\billow.cpp" />
+    <ClCompile Include="libs\libnoise\module\blend.cpp" />
+    <ClCompile Include="libs\libnoise\module\cache.cpp" />
+    <ClCompile Include="libs\libnoise\module\checkerboard.cpp" />
+    <ClCompile Include="libs\libnoise\module\clamp.cpp" />
+    <ClCompile Include="libs\libnoise\module\const.cpp" />
+    <ClCompile Include="libs\libnoise\module\curve.cpp" />
+    <ClCompile Include="libs\libnoise\module\cylinders.cpp" />
+    <ClCompile Include="libs\libnoise\module\displace.cpp" />
+    <ClCompile Include="libs\libnoise\module\exponent.cpp" />
+    <ClCompile Include="libs\libnoise\module\invert.cpp" />
+    <ClCompile Include="libs\libnoise\module\max.cpp" />
+    <ClCompile Include="libs\libnoise\module\min.cpp" />
+    <ClCompile Include="libs\libnoise\module\modulebase.cpp" />
+    <ClCompile Include="libs\libnoise\module\multiply.cpp" />
+    <ClCompile Include="libs\libnoise\module\perlin.cpp" />
+    <ClCompile Include="libs\libnoise\module\power.cpp" />
+    <ClCompile Include="libs\libnoise\module\ridgedmulti.cpp" />
+    <ClCompile Include="libs\libnoise\module\rotatepoint.cpp" />
+    <ClCompile Include="libs\libnoise\module\scalebias.cpp" />
+    <ClCompile Include="libs\libnoise\module\scalepoint.cpp" />
+    <ClCompile Include="libs\libnoise\module\select.cpp" />
+    <ClCompile Include="libs\libnoise\module\spheres.cpp" />
+    <ClCompile Include="libs\libnoise\module\terrace.cpp" />
+    <ClCompile Include="libs\libnoise\module\translatepoint.cpp" />
+    <ClCompile Include="libs\libnoise\module\turbulence.cpp" />
+    <ClCompile Include="libs\libnoise\module\voronoi.cpp" />
+    <ClCompile Include="libs\libnoise\noisegen.cpp" />
+    <ClCompile Include="libs\libnoise\noiseutils.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +176,54 @@
     <ClInclude Include="libs\ImGui\stb_rect_pack.h" />
     <ClInclude Include="libs\ImGui\stb_textedit.h" />
     <ClInclude Include="libs\ImGui\stb_truetype.h" />
+    <ClInclude Include="libs\libnoise\basictypes.h" />
+    <ClInclude Include="libs\libnoise\exception.h" />
+    <ClInclude Include="libs\libnoise\interp.h" />
+    <ClInclude Include="libs\libnoise\latlon.h" />
+    <ClInclude Include="libs\libnoise\mathconsts.h" />
+    <ClInclude Include="libs\libnoise\misc.h" />
+    <ClInclude Include="libs\libnoise\model\cylinder.h" />
+    <ClInclude Include="libs\libnoise\model\line.h" />
+    <ClInclude Include="libs\libnoise\model\model.h" />
+    <ClInclude Include="libs\libnoise\model\plane.h" />
+    <ClInclude Include="libs\libnoise\model\sphere.h" />
+    <ClInclude Include="libs\libnoise\module\abs.h" />
+    <ClInclude Include="libs\libnoise\module\add.h" />
+    <ClInclude Include="libs\libnoise\module\billow.h" />
+    <ClInclude Include="libs\libnoise\module\blend.h" />
+    <ClInclude Include="libs\libnoise\module\cache.h" />
+    <ClInclude Include="libs\libnoise\module\checkerboard.h" />
+    <ClInclude Include="libs\libnoise\module\clamp.h" />
+    <ClInclude Include="libs\libnoise\module\const.h" />
+    <ClInclude Include="libs\libnoise\module\curve.h" />
+    <ClInclude Include="libs\libnoise\module\cylinders.h" />
+    <ClInclude Include="libs\libnoise\module\displace.h" />
+    <ClInclude Include="libs\libnoise\module\exponent.h" />
+    <ClInclude Include="libs\libnoise\module\invert.h" />
+    <ClInclude Include="libs\libnoise\module\max.h" />
+    <ClInclude Include="libs\libnoise\module\min.h" />
+    <ClInclude Include="libs\libnoise\module\module.h" />
+    <ClInclude Include="libs\libnoise\module\modulebase.h" />
+    <ClInclude Include="libs\libnoise\module\multiply.h" />
+    <ClInclude Include="libs\libnoise\module\perlin.h" />
+    <ClInclude Include="libs\libnoise\module\power.h" />
+    <ClInclude Include="libs\libnoise\module\ridgedmulti.h" />
+    <ClInclude Include="libs\libnoise\module\rotatepoint.h" />
+    <ClInclude Include="libs\libnoise\module\scalebias.h" />
+    <ClInclude Include="libs\libnoise\module\scalepoint.h" />
+    <ClInclude Include="libs\libnoise\module\select.h" />
+    <ClInclude Include="libs\libnoise\module\spheres.h" />
+    <ClInclude Include="libs\libnoise\module\terrace.h" />
+    <ClInclude Include="libs\libnoise\module\translatepoint.h" />
+    <ClInclude Include="libs\libnoise\module\turbulence.h" />
+    <ClInclude Include="libs\libnoise\module\voronoi.h" />
+    <ClInclude Include="libs\libnoise\noise.h" />
+    <ClInclude Include="libs\libnoise\noisegen.h" />
+    <ClInclude Include="libs\libnoise\noiseutils.h" />
+    <ClInclude Include="libs\libnoise\vectortable.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\libnoise\Sources" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
