@@ -72,7 +72,7 @@ int main()
 		}
 
 		//Render Nodes here
-		ShowExampleAppCustomNodeGraph(&bMenu_SaveNoise);
+		ShowNodeGraph(&bMenu_SaveNoise);
 
 		int dW, dH;
 		glfwGetFramebufferSize(window, &dW, &dH);

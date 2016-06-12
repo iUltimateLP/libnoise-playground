@@ -164,7 +164,7 @@ static bool isConnectorHovered(Connection* c, ImVec2 offset)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static Connection* getHoverCon(ImVec2 offset, ImVec2* pos)
+static Connection* getHoveredConnector(ImVec2 offset, ImVec2* pos)
 {
 	for (Node* node : s_nodes)
 	{
@@ -195,14 +195,14 @@ static Connection* getHoverCon(ImVec2 offset, ImVec2* pos)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void updateDraging(ImVec2 offset)
+void updateDragging(ImVec2 offset)
 {
 	switch (s_dragState)
 	{
 	case DragState_Default:
 	{
 		ImVec2 pos;
-		Connection* con = getHoverCon(offset, &pos);
+		Connection* con = getHoveredConnector(offset, &pos);
 
 		if (con)
 		{
@@ -218,7 +218,7 @@ void updateDraging(ImVec2 offset)
 	case DragState_Hover:
 	{
 		ImVec2 pos;
-		Connection* con = getHoverCon(offset, &pos);
+		Connection* con = getHoveredConnector(offset, &pos);
 
 		// Make sure we are still hovering the same node
 
@@ -230,7 +230,7 @@ void updateDraging(ImVec2 offset)
 		}
 
 		if (ImGui::IsMouseClicked(0) && s_dragNode.con)
-			s_dragState = DragState_Draging;
+			s_dragState = DragState_Dragging;
 
 		break;
 	}
@@ -240,7 +240,7 @@ void updateDraging(ImVec2 offset)
 		break;
 	}
 
-	case DragState_Draging:
+	case DragState_Dragging:
 	{
 		ImDrawList* drawList = ImGui::GetWindowDrawList();
 
@@ -251,19 +251,14 @@ void updateDraging(ImVec2 offset)
 		if (!ImGui::IsMouseDown(0))
 		{
 			ImVec2 pos;
-			Connection* con = getHoverCon(offset, &pos);
+			Connection* con = getHoveredConnector(offset, &pos);
 			
-			// Make sure we are still hovering the same node
-
 			if (con == s_dragNode.con)
 			{
 				s_dragNode.con = 0;
 				s_dragState = DragState_Default;
 				return;
 			}
-
-			// Lets connect the nodes.
-			// TODO: Make sure we connect stuff in the correct way!
 
 			con->input = s_dragNode.con;
 			s_dragNode.con = 0;
@@ -351,14 +346,8 @@ static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& no
 	drawList->AddRectFilled(node_rect_min + ImVec2(1, 1), titleArea, getNodeTypeByName(node->name).color, 4.0f);
 	drawList->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
 
-	ImVec2 off;
-
+	offset = node_rect_min;
 	offset.y += 40.0f;
-
-	offset = offset + node_rect_min;
-
-	off.x = node_rect_min.x;
-	off.y = node_rect_min.y;
 
 	for (Connection* con : node->inputConnections)
 	{
@@ -462,56 +451,23 @@ void renderLines(ImDrawList* drawList, ImVec2 offset)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void ShowExampleAppCustomNodeGraph(bool* opened)
+void ShowNodeGraph(bool* bOpen)
 {
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
-	if (!ImGui::Begin("Example: Custom Node Graph", opened))
+	if (!ImGui::Begin("Graph Editor", bOpen))
 	{
 		ImGui::End();
 		return;
 	}
 
-	bool open_context_menu = false;
-	int node_hovered_in_list = -1;
-	int node_hovered_in_scene = -1;
 
-	static int node_selected = -1;
+	bool bContextMenuOpen = false;
+	int hoveredNode_List = -1;
+	int hoveredNode_Scene = -1;
+
+	static int selectedNode = -1;
 	static ImVec2 scrolling = ImVec2(0.0f, 0.0f);
 
-#if 0	
-	static ImVector<Node> nodes;
-	static ImVector<NodeLink> links;
-	static bool inited = false;
-	static ImVec2 scrolling = ImVec2(0.0f, 0.0f);
-	static int node_selected = -1;
-	if (!inited)
-	{
-		nodes.push_back(Node(0, "MainTex", ImVec2(40, 50), 0.5f, 1, 1));
-		nodes.push_back(Node(1, "BumpMap", ImVec2(40, 150), 0.42f, 1, 1));
-		nodes.push_back(Node(2, "Combine", ImVec2(270, 80), 1.0f, 2, 2));
-		links.push_back(NodeLink(0, 0, 2, 0));
-		links.push_back(NodeLink(1, 0, 2, 1));
-		inited = true;
-	}
-	// Draw a list of nodes on the left side
-	ImGui::BeginChild("node_list", ImVec2(100, 0));
-	ImGui::Text("Nodes");
-	ImGui::Separator();
-	for (int node_idx = 0; node_idx < nodes.Size; node_idx++)
-	{
-		Node* node = &nodes[node_idx];
-		ImGui::PushID(node->ID);
-		if (ImGui::Selectable(node->Name, node->ID == node_selected))
-			node_selected = node->ID;
-		if (ImGui::IsItemHovered())
-		{
-			node_hovered_in_list = node->ID;
-			open_context_menu |= ImGui::IsMouseClicked(1);
-		}
-		ImGui::PopID();
-	}
-	ImGui::EndChild();
-#endif
 	ImGui::SameLine();
 	ImGui::BeginGroup();
 
@@ -523,18 +479,14 @@ void ShowExampleAppCustomNodeGraph(bool* opened)
 	ImGui::BeginChild("scrolling_region", ImVec2(0, 0), true, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove);
 	ImGui::PushItemWidth(120.0f);
 
-
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
 	draw_list->ChannelsSplit(2);
 	//ImVec2 offset = ImGui::GetCursorScreenPos() - scrolling;
 
-	//displayNode(draw_list, scrolling, s_emittable, node_selected);
-	//displayNode(draw_list, scrolling, s_emitter, node_selected);
-
 	for (Node* node : s_nodes)
-		displayNode(draw_list, scrolling, node, node_selected);
+		displayNode(draw_list, scrolling, node, selectedNode);
 
-	updateDraging(scrolling);
+	updateDragging(scrolling);
 	renderLines(draw_list, scrolling);
 
 	draw_list->ChannelsMerge();
@@ -542,59 +494,21 @@ void ShowExampleAppCustomNodeGraph(bool* opened)
 	// Open context menu
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1))
 	{
-		node_selected = node_hovered_in_list = node_hovered_in_scene = -1;
-		open_context_menu = true;
+		selectedNode = hoveredNode_List = hoveredNode_Scene = -1;
+		bContextMenuOpen = true;
 	}
-	if (open_context_menu)
+	if (bContextMenuOpen)
 	{
 		ImGui::OpenPopup("context_menu");
-		if (node_hovered_in_list != -1)
-			node_selected = node_hovered_in_list;
-		if (node_hovered_in_scene != -1)
-			node_selected = node_hovered_in_scene;
+		if (hoveredNode_List != -1)
+			selectedNode = hoveredNode_List;
+		if (hoveredNode_Scene != -1)
+			selectedNode = hoveredNode_Scene;
 	}
 
-	// Draw context menu
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
 	if (ImGui::BeginPopup("context_menu"))
 	{
-		if (ImGui::MenuItem("Load graph..."))
-		{
-			/*
-			char path[1024];
-			if (Dialog_open(path))
-			{
-			printf("file to load %s\n", path);
-			}
-			*/
-		}
-
-		if (ImGui::MenuItem("Save graph..."))
-		{
-			/*
-			char path[1024];
-			if (Dialog_save(path))
-			{
-			saveNodes(path);
-			}
-			*/
-		}
-
-
-		/*
-		Node* node = node_selected != -1 ? &nodes[node_selected] : NULL;
-		ImVec2 scene_pos = ImGui::GetMousePosOnOpeningCurrentPopup() - offset;
-		if (node)
-		{
-		ImGui::Text("Node '%s'", node->Name);
-		ImGui::Separator();
-		if (ImGui::MenuItem("Rename..", NULL, false, false)) {}
-		if (ImGui::MenuItem("Delete", NULL, false, false)) {}
-		if (ImGui::MenuItem("Copy", NULL, false, false)) {}
-		}
-		*/
-		//else
-
 		for (int i = 0; i < (int)sizeof_array(s_nodeTypes); ++i)
 		{
 			if (ImGui::MenuItem(s_nodeTypes[i].name))
@@ -610,7 +524,9 @@ void ShowExampleAppCustomNodeGraph(bool* opened)
 
 	// Scrolling
 	if (ImGui::IsWindowHovered() && !ImGui::IsAnyItemActive() && ImGui::IsMouseDragging(2, 0.0f))
-		scrolling = scrolling - ImGui::GetIO().MouseDelta;
+	{
+		scrolling = scrolling + ImGui::GetIO().MouseDelta;
+	}
 
 	ImGui::PopItemWidth();
 	ImGui::EndChild();
@@ -618,7 +534,15 @@ void ShowExampleAppCustomNodeGraph(bool* opened)
 	ImGui::PopStyleVar(2);
 	ImGui::EndGroup();
 
+
+	// Window Moving
+	if (ImGui::IsMouseDragging(0, 0.0f) && ImGui::IsMouseHoveringWindow())
+	{
+		scrolling = scrolling + ImGui::GetIO().MouseDelta;
+	}
+
 	ImGui::End();
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

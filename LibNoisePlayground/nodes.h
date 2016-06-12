@@ -162,7 +162,7 @@ enum DragState
 	DragState_Default,
 	DragState_Hover,
 	DragState_BeginDrag,
-	DragState_Draging,
+	DragState_Dragging,
 	DragState_Connect,
 };
 
@@ -177,4 +177,4 @@ static DragState s_dragState = DragState_Default;
 
 static std::vector<Node*> s_nodes;
 
-void ShowExampleAppCustomNodeGraph(bool* opened);
+void ShowNodeGraph(bool* bOpen);
