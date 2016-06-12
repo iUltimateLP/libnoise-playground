@@ -153,6 +153,12 @@
     <ClCompile Include="nodes.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="style.h">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="style.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\ImGui\imconfig.h">

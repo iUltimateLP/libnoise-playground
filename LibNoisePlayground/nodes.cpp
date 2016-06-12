@@ -460,13 +460,12 @@ void ShowNodeGraph(bool* bOpen)
 		return;
 	}
 
-
 	bool bContextMenuOpen = false;
 	int hoveredNode_List = -1;
 	int hoveredNode_Scene = -1;
 
 	static int selectedNode = -1;
-	static ImVec2 scrolling = ImVec2(0.0f, 0.0f);
+	static ImVec2 curOffset = ImVec2(0.0f, 0.0f);
 
 	ImGui::SameLine();
 	ImGui::BeginGroup();
@@ -479,17 +478,17 @@ void ShowNodeGraph(bool* bOpen)
 	ImGui::BeginChild("scrolling_region", ImVec2(0, 0), true, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove);
 	ImGui::PushItemWidth(120.0f);
 
-	ImDrawList* draw_list = ImGui::GetWindowDrawList();
-	draw_list->ChannelsSplit(2);
+	ImDrawList* drawList = ImGui::GetWindowDrawList();
+	drawList->ChannelsSplit(2);
 	//ImVec2 offset = ImGui::GetCursorScreenPos() - scrolling;
 
 	for (Node* node : s_nodes)
-		displayNode(draw_list, scrolling, node, selectedNode);
+		displayNode(drawList, curOffset, node, selectedNode);
 
-	updateDragging(scrolling);
-	renderLines(draw_list, scrolling);
+	updateDragging(curOffset);
+	renderLines(drawList, curOffset);
 
-	draw_list->ChannelsMerge();
+	drawList->ChannelsMerge();
 
 	// Open context menu
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseHoveringWindow() && ImGui::IsMouseClicked(1))
@@ -525,7 +524,7 @@ void ShowNodeGraph(bool* bOpen)
 	// Scrolling
 	if (ImGui::IsWindowHovered() && !ImGui::IsAnyItemActive() && ImGui::IsMouseDragging(2, 0.0f))
 	{
-		scrolling = scrolling + ImGui::GetIO().MouseDelta;
+		curOffset = curOffset + ImGui::GetIO().MouseDelta;
 	}
 
 	ImGui::PopItemWidth();
@@ -534,11 +533,11 @@ void ShowNodeGraph(bool* bOpen)
 	ImGui::PopStyleVar(2);
 	ImGui::EndGroup();
 
-
+	
 	// Window Moving
 	if (ImGui::IsMouseDragging(0, 0.0f) && ImGui::IsMouseHoveringWindow())
 	{
-		scrolling = scrolling + ImGui::GetIO().MouseDelta;
+		curOffset = curOffset + ImGui::GetIO().MouseDelta;
 	}
 
 	ImGui::End();

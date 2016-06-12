@@ -1,10 +1,10 @@
 //#include <iostream>
-#include "libs/glfw/include/glfw3.h"
-#include "libs/ImGui/imgui.h"
-#include "libs/ImGui/imgui_impl_glfw.h"
+#include "glfw3.h"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
 //#include "libs/libnoise/noise.h"
 //#include "libs/libnoise/noiseutils.h"
-
+#include "style.h"
 #include "nodes.h"
 
 //using namespace noise;
@@ -73,6 +73,9 @@ int main()
 
 		//Render Nodes here
 		ShowNodeGraph(&bMenu_SaveNoise);
+
+		//ImGui::ShowStyleEditor();
+		SetLightStyle(ImGui::GetStyle());
 
 		int dW, dH;
 		glfwGetFramebufferSize(window, &dW, &dH);
