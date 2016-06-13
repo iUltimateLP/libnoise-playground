@@ -1,7 +1,6 @@
 #pragma once
 
 #include "imgui.h"
-
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
@@ -177,5 +176,7 @@ static DragNode s_dragNode;
 static DragState s_dragState = DragState_Default;
 
 static std::vector<Node*> s_nodes;
+
+void SetLightStyle(ImGuiStyle& style);
 
 void ShowNodeGraph(bool* bOpen);

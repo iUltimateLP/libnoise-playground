@@ -166,8 +166,6 @@
     <ClCompile Include="libs\libnoise\noiseutils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="nodes.cpp" />
-    <ClCompile Include="style.cpp" />
-    <ClCompile Include="style.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\glfw\include\glfw3.h" />

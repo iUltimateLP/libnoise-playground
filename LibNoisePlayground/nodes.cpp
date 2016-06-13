@@ -1,8 +1,39 @@
 #include "nodes.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Node types
+// Styles
 
+void SetLightStyle(ImGuiStyle& style)
+{
+	style.Colors[ImGuiCol_ChildWindowBg] = ImVec4(0.8f, 0.8f, 0.8f, 1.00f);
+	style.Colors[ImGuiCol_Text] = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.93f, 0.93f, 0.93f, 1.00f);
+	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.78f, 0.78f, 0.78f, 1.00f);
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.53f);
+	style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.80f, 0.80f, 0.80f, 0.78f);
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.80f, 0.80f, 0.80f, 1.00f);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.67f, 0.84f, 0.96f, 1.00f);
+	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.67f, 0.84f, 0.96f, 0.47f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.67f, 0.84f, 0.96f, 0.87f);
+	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.93f, 0.93f, 0.93f, 1.00f);
+	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.82f, 0.86f, 0.91f, 1.00f);
+	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.72f, 0.77f, 0.79f, 1.00f);
+	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.64f, 0.69f, 0.71f, 1.00f);
+	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.64f, 0.69f, 0.71f, 1.00f);
+	style.Colors[ImGuiCol_ComboBg] = ImVec4(0.80f, 0.80f, 0.80f, 1.00f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.64f, 0.64f, 0.64f, 1.00f);
+	style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.76f, 0.76f, 0.76f, 1.00f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.55f, 0.55f, 0.55f, 1.00f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.98f, 0.82f, 0.36f, 1.00f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.90f, 0.75f, 0.28f, 1.00f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.82f, 0.67f, 0.20f, 1.00f);
+	style.Colors[ImGuiCol_Header] = ImVec4(0.39f, 0.39f, 0.39f, 0.39f);
+	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.86f, 0.86f, 0.86f, 1.00f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.78f, 0.78f, 0.78f, 1.00f);
+	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.47f, 0.47f, 0.47f, 1.00f);
+	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.55f, 0.55f, 0.55f, 1.00f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.55f, 0.55f, 0.55f, 1.00f);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -102,32 +133,6 @@ Node* createNodeFromName(ImVec2 pos, const char* name)
 
 	return 0;
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*
-static void saveNodes(const char* filename)
-{
-json_t* root = json_object();
-json_t* nodes = json_array();
-for (Node* node : s_nodes)
-{
-json_t* item = json_object();
-json_object_set_new(item, "type", json_string(node->name));
-json_object_set_new(item, "id", json_integer(node->id));
-json_object_set_new(item, "pos", json_pack("{s:f, s:f}", "x",  node->pos.x, "y", node->pos.y));
-json_array_append_new(nodes, item);
-}
-// save the nodes
-json_object_set_new(root, "nodes", nodes);
-if (json_dump_file(root, filename, JSON_INDENT(4) | JSON_PRESERVE_ORDER) != 0)
-printf("JSON: Unable to open %s for write\n", filename);
-}
-*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -286,6 +291,11 @@ static NodeType getNodeTypeByName(const char* name)
 	return NodeType();
 }
 
+static ImColor vec2color(ImVec4 vec)
+{
+	return ImColor(vec.x, vec.y, vec.z, vec.w);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& node_selected)
@@ -336,7 +346,7 @@ static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& no
 	if (ImGui::IsItemActive() && !s_dragNode.con)
 		node_moving_active = true;
 
-	ImU32 node_bg_color = node_hovered_in_scene == node->id ? ImColor(75, 75, 75) : ImColor(60, 60, 60);
+	ImU32 node_bg_color = node_hovered_in_scene == node->id ? ImColor(160,160,160) : ImColor(180,180,180); // #NodeColors
 	drawList->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
 
 	ImVec2 titleArea = node_rect_max;
@@ -344,7 +354,7 @@ static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& no
 
 	// Draw text bg area
 	drawList->AddRectFilled(node_rect_min + ImVec2(1, 1), titleArea, getNodeTypeByName(node->name).color, 4.0f);
-	drawList->AddRect(node_rect_min, node_rect_max, ImColor(100, 100, 100), 4.0f);
+	drawList->AddRect(node_rect_min, node_rect_max, ImColor(143, 143, 143), 4.0f); // #NodeFrameColor
 
 	offset = node_rect_min;
 	offset.y += 40.0f;
@@ -354,10 +364,10 @@ static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& no
 		ImGui::SetCursorScreenPos(offset + ImVec2(10.0f, 0));
 		ImGui::Text("%s", con->desc.name);
 
-		ImColor conColor = ImColor(150, 150, 150);
+		ImColor conColor = ImColor(150, 150, 150); // #NodeConnectionColor
 
 		if (isConnectorHovered(con, node_rect_min))
-			conColor = ImColor(200, 200, 200);
+			conColor = ImColor(200, 200, 200); // #NodeConnectionColorHovered
 
 		drawList->AddCircleFilled(node_rect_min + con->pos, NODE_SLOT_RADIUS, conColor);
 
@@ -374,10 +384,10 @@ static void displayNode(ImDrawList* drawList, ImVec2 offset, Node* node, int& no
 		ImGui::SetCursorScreenPos(offset + ImVec2(con->pos.x - (textSize.x + 10.0f), 0));
 		ImGui::Text("%s", con->desc.name);
 
-		ImColor conColor = ImColor(150, 150, 150);
+		ImColor conColor = ImColor(150, 150, 150);  // #NodeConnectionColor
 
 		if (isConnectorHovered(con, node_rect_min))
-			conColor = ImColor(200, 200, 200);
+			conColor = ImColor(200, 200, 200);  // #NodeConnectionColorHovered
 
 		drawList->AddCircleFilled(node_rect_min + con->pos, NODE_SLOT_RADIUS, conColor);
 
@@ -470,12 +480,13 @@ void ShowNodeGraph(bool* bOpen)
 	ImGui::SameLine();
 	ImGui::BeginGroup();
 
-	// Create our child canvas
-	//ImGui::Text("Hold middle mouse button to scroll (%.2f,%.2f)", scrolling.x, scrolling.y);
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1, 1));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-	ImGui::PushStyleColor(ImGuiCol_ChildWindowBg, ImColor(40, 40, 40, 200));
-	ImGui::BeginChild("scrolling_region", ImVec2(0, 0), true, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove);
+	ImGui::PushStyleColor(ImGuiCol_ChildWindowBg, ImColor(0, 0, 0, 0)); // Will be overridden anyway
+
+	SetLightStyle(ImGui::GetStyle());
+
+	ImGui::BeginChild("scrolling_region", ImVec2(0,0), true, ImGuiWindowFlags_NoScrollbar);
 	ImGui::PushItemWidth(120.0f);
 
 	ImDrawList* drawList = ImGui::GetWindowDrawList();
@@ -512,7 +523,7 @@ void ShowNodeGraph(bool* bOpen)
 		{
 			if (ImGui::MenuItem(s_nodeTypes[i].name))
 			{
-				Node* node = createNodeFromType(ImGui::GetIO().MousePos, &s_nodeTypes[i]);
+				Node* node = createNodeFromType(ImGui::GetIO().MousePos - curOffset, &s_nodeTypes[i]);
 				s_nodes.push_back(node);
 			}
 		}
